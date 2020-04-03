@@ -128,7 +128,7 @@ const fullHdConstraints = {
 };
 
 const fourKConstraints = {
-  video: { facingMode: 'environment', width: { exact: 4096 }, height: { exact: 2160 } }
+  video: { facingMode: 'environment', width: { exact: 3000 }, height: { exact: 1800 } }
 };
 
 const eightKConstraints = {
