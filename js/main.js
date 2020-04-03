@@ -112,27 +112,27 @@ eightKButton.onclick = () => {
 };
 
 const qvgaConstraints = {
-  video: { width: { exact: 320 }, height: { exact: 240 } }
+  video: { facingMode: 'environment', width: { exact: 320 }, height: { exact: 240 } }
 };
 
 const vgaConstraints = {
-  video: { width: { exact: 640 }, height: { exact: 480 } }
+  video: { facingMode: 'environment', width: { exact: 640 }, height: { exact: 480 } }
 };
 
 const hdConstraints = {
-  video: { width: { exact: 1280 }, height: { exact: 720 } }
+  video: { facingMode: 'environment', width: { exact: 1280 }, height: { exact: 720 } }
 };
 
 const fullHdConstraints = {
-  video: { width: { exact: 1920 }, height: { exact: 1080 } }
+  video: { facingMode: 'environment', width: { exact: 1920 }, height: { exact: 1080 } }
 };
 
 const fourKConstraints = {
-  video: { width: { exact: 4096 }, height: { exact: 2160 } }
+  video: { facingMode: 'environment', width: { exact: 4096 }, height: { exact: 2160 } }
 };
 
 const eightKConstraints = {
-  video: { width: { exact: 7680 }, height: { exact: 4320 } }
+  video: { facingMode: 'environment', width: { exact: 7680 }, height: { exact: 4320 } }
 };
 
 function gotStream(mediaStream) {
