@@ -30,6 +30,63 @@ const sizeLock = document.querySelector('#sizelock');
 let currentWidth = 0;
 let currentHeight = 0;
 
+
+
+
+
+document.addEventListener('DOMContentLoaded', function(event) {
+  // do some WebRTC checks before creating the interface
+  DetectRTC.load(function() {
+    // do some checks
+    if (DetectRTC.isWebRTCSupported == false) {
+      alert(
+        'Please use Chrome, Firefox, iOS 11, Android 5 or higher, Safari 11 or higher',
+      );
+    } else {
+      if (DetectRTC.hasWebcam == false) {
+        alert('Please install an external webcam device.');
+      } else {
+
+      }
+    }
+
+    console.log(
+      'RTC Debug info: ' +
+        '\n OS:                   ' +
+        DetectRTC.osName +
+        ' ' +
+        DetectRTC.osVersion +
+        '\n browser:              ' +
+        DetectRTC.browser.fullVersion +
+        ' ' +
+        DetectRTC.browser.name +
+        '\n is Mobile Device:     ' +
+        DetectRTC.isMobileDevice +
+        '\n has webcam:           ' +
+        DetectRTC.hasWebcam +
+        '\n has permission:       ' +
+        DetectRTC.isWebsiteHasWebcamPermission +
+        '\n getUserMedia Support: ' +
+        DetectRTC.isGetUserMediaSupported +
+        '\n isWebRTC Supported:   ' +
+        DetectRTC.isWebRTCSupported +
+        '\n WebAudio Supported:   ' +
+        DetectRTC.isAudioContextSupported +
+        '\n is Mobile Device:     ' +
+        DetectRTC.isMobileDevice,
+    );
+  });
+});
+
+
+
+
+
+
+
+
+
+
 vgaButton.onclick = () => {
   getMedia(vgaConstraints);
 };
@@ -55,27 +112,27 @@ eightKButton.onclick = () => {
 };
 
 const qvgaConstraints = {
-  video: {width: {exact: 320}, height: {exact: 240}}
+  video: { width: { exact: 320 }, height: { exact: 240 } }
 };
 
 const vgaConstraints = {
-  video: {width: {exact: 640}, height: {exact: 480}}
+  video: { width: { exact: 640 }, height: { exact: 480 } }
 };
 
 const hdConstraints = {
-  video: {width: {exact: 1280}, height: {exact: 720}}
+  video: { width: { exact: 1280 }, height: { exact: 720 } }
 };
 
 const fullHdConstraints = {
-  video: {width: {exact: 1920}, height: {exact: 1080}}
+  video: { width: { exact: 1920 }, height: { exact: 1080 } }
 };
 
 const fourKConstraints = {
-  video: {width: {exact: 4096}, height: {exact: 2160}}
+  video: { width: { exact: 4096 }, height: { exact: 2160 } }
 };
 
 const eightKConstraints = {
-  video: {width: {exact: 7680}, height: {exact: 4320}}
+  video: { width: { exact: 7680 }, height: { exact: 4320 } }
 };
 
 function gotStream(mediaStream) {
@@ -135,25 +192,25 @@ function constraintChange(e) {
   let constraints;
   if (aspectLock.checked) {
     constraints = {
-      width: {exact: e.target.value},
+      width: { exact: e.target.value },
       aspectRatio: {
         exact: video.videoWidth / video.videoHeight
       },
-	facingMode: 'environment',
+      facingMode: 'environment',
     };
   } else {
-    constraints = {width: {exact: e.target.value}, facingMode: 'environment',};
+    constraints = { width: { exact: e.target.value }, facingMode: 'environment', };
   }
   clearErrorMessage();
   console.log('applying ' + JSON.stringify(constraints));
   track.applyConstraints(constraints)
-      .then(() => {
-        console.log('applyConstraint success');
-        displayVideoDimensions('applyConstraints');
-      })
-      .catch(err => {
-        errorMessage('applyConstraints', err.name);
-      });
+    .then(() => {
+      console.log('applyConstraint success');
+      displayVideoDimensions('applyConstraints');
+    })
+    .catch(err => {
+      errorMessage('applyConstraints', err.name);
+    });
 }
 
 widthInput.onchange = constraintChange;
@@ -178,8 +235,8 @@ function getMedia(constraints) {
   clearErrorMessage();
   videoblock.style.display = 'none';
   navigator.mediaDevices.getUserMedia(constraints)
-      .then(gotStream)
-      .catch(e => {
-        errorMessage('getUserMedia', e.message, e.name);
-      });
+    .then(gotStream)
+    .catch(e => {
+      errorMessage('getUserMedia', e.message, e.name);
+    });
 }
