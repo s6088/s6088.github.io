@@ -196,10 +196,10 @@ function constraintChange(e) {
       aspectRatio: {
         exact: video.videoWidth / video.videoHeight
       },
-      facingMode: 'environment',
+      facingMode: { exact : 'environment'},
     };
   } else {
-    constraints = { width: { exact: e.target.value }, facingMode: 'environment', };
+    constraints = { width: { exact: e.target.value }, facingMode: { exact : 'environment'}, };
   }
   clearErrorMessage();
   console.log('applying ' + JSON.stringify(constraints));
